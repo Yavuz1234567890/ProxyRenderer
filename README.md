@@ -1,3 +1,3 @@
 # ProxyRenderer
 
-A Renderer for Proxy engine
+A Renderer for Proxy engine.

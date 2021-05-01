@@ -2,6 +2,7 @@ package shader;
 
 import static org.lwjgl.opengl.GL20.*;
 
+import core.Color;
 import core.RenderObject;
 
 public class ShaderProgram extends RenderObject {
@@ -25,6 +26,14 @@ public class ShaderProgram extends RenderObject {
 			glLinkProgram(id);
 			glValidateProgram(id);
 		}
+	}
+	
+	private int UniformLocation(String name) {
+		return glGetUniformLocation(id, name);
+	}
+	
+	public void SetColor(Color color) {
+		glUniform4f(UniformLocation("color"), color.R(), color.G(), color.B(), color.A());
 	}
 	
 	@Override

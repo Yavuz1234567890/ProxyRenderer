@@ -16,4 +16,9 @@ public class Shader extends RenderObject {
 			glCompileShader(id);
 		}
 	}
+	
+	public void ShowErrors() {
+		if(glGetShaderi(id, GL_COMPILE_STATUS) != 1)
+			System.err.println(glGetShaderInfoLog(id));
+	}
 }

@@ -14,16 +14,16 @@ public class IndexBuffer extends RenderObject {
 	
 	public void Data(IntBuffer data) {
 		Bind();
-		if(id != GL_FALSE)glBufferData(id, data, GL_ELEMENT_ARRAY_BUFFER);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, data, GL_STATIC_DRAW);
 	}
 	
 	@Override
 	public void Bind() {
-		if(id != GL_FALSE)glBindBuffer(id, GL_ELEMENT_ARRAY_BUFFER);
+		if(id != GL_FALSE)glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
 	}
 	
 	@Override
 	public void Unbind() {
-		glBindBuffer(0, GL_ELEMENT_ARRAY_BUFFER);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 }

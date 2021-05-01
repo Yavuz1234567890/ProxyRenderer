@@ -2,24 +2,40 @@ package display;
 
 import static org.lwjgl.glfw.GLFW.*;
 
+import java.awt.Dimension;
+import java.nio.IntBuffer;
+
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL11;
 
 import core.Context;
+import core.Renderer;
 
 public class Window {
-	private static final int NULL = 0, TRUE = 1;
 	private long id;
 	private Context context;
 	
-	public Window(String title, int width, int height) {
+	private int width, height;
+	
+	public Window(String title, int startwidth, int startheight) {
 		glfwInit();
-		id = glfwCreateWindow(width, height, title, NULL, NULL);
-		if(id == NULL)System.err.println("Window creation failed!");
+		id = glfwCreateWindow(startwidth, startheight, title, GLFW_FALSE, GLFW_FALSE);
+		if(id == GLFW_FALSE)System.err.println("Window creation failed!");
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		glfwSetWindowPos(id, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
+		glfwSetWindowPos(id, (vidmode.width() - startwidth) / 2, 
+				(vidmode.height() - startheight) / 2);
 		context = new Context(this);
 		context.CreateContext();
+		
+		glfwSetWindowSizeCallback(id, this::windowSizeCallback);
+	}
+	
+	private void windowSizeCallback(long id, int width, int height) {
+		this.width = width;
+		this.height = height;
+		Renderer.Viewport(0, 0, width, height);
 	}
 	
 	public boolean Running() {
@@ -38,6 +54,14 @@ public class Window {
 	
 	public void Close() {
 		glfwTerminate();
+	}
+	
+	public int GetWidth() {
+		return width;
+	}
+	
+	public int GetHeight() {
+		return height;
 	}
 	
 	public long ID() {

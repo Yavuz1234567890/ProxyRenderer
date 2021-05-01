@@ -27,4 +27,8 @@ public class Renderer {
 	public static void Disable(int disable) {
 		glDisable(disable);
 	}
+	
+	public static void Viewport(int x, int y, int width, int height) {
+		glViewport(x, y, width, height);
+	}
 }

@@ -2,9 +2,9 @@ package shader;
 
 import static org.lwjgl.opengl.GL20.*;
 
-public class Shader {
-	private int id;
-	
+import core.RenderObject;
+
+public class Shader extends RenderObject {
 	public Shader(int type) {
 		id = glCreateShader(type);
 		if(id == GL_FALSE)return;
@@ -15,9 +15,5 @@ public class Shader {
 			glShaderSource(id, shadersrc);
 			glCompileShader(id);
 		}
-	}
-	
-	public int ID() {
-		return id;
 	}
 }

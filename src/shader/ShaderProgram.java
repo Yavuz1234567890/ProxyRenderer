@@ -2,9 +2,9 @@ package shader;
 
 import static org.lwjgl.opengl.GL20.*;
 
-public class ShaderProgram {
-	private int id;
-	
+import core.RenderObject;
+
+public class ShaderProgram extends RenderObject {
 	public ShaderProgram() {
 		id = glCreateProgram();
 		if(id == GL_FALSE)return;
@@ -27,15 +27,13 @@ public class ShaderProgram {
 		}
 	}
 	
+	@Override
 	public void Bind() {
 		if(id != GL_FALSE)glUseProgram(id);
 	}
 	
+	@Override
 	public void Unbind() {
 		glUseProgram(0);
-	}
-	
-	public int ID() {
-		return id;
 	}
 }

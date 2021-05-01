@@ -4,9 +4,9 @@ import static org.lwjgl.opengl.GL15.*;
 
 import java.nio.FloatBuffer;
 
-public class VertexBuffer {
-	private int id;
-	
+import core.RenderObject;
+
+public class VertexBuffer extends RenderObject {
 	public VertexBuffer() {
 		id = glGenBuffers();
 		if(id == GL_FALSE)return;
@@ -17,15 +17,13 @@ public class VertexBuffer {
 		if(id != GL_FALSE)glBufferData(id, data, GL_ARRAY_BUFFER);
 	}
 	
+	@Override
 	public void Bind() {
 		if(id != GL_FALSE)glBindBuffer(id, GL_ARRAY_BUFFER);
 	}
 	
+	@Override
 	public void Unbind() {
 		glBindBuffer(0, GL_ARRAY_BUFFER);
-	}
-	
-	public int ID() {
-		return id;
 	}
 }

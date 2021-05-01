@@ -5,8 +5,9 @@ import static org.lwjgl.opengl.GL13.*;
 
 import java.nio.ByteBuffer;
 
-public class Texture {
-	private int id;
+import core.RenderObject;
+
+public class Texture extends RenderObject {
 	private int width, height;
 	
 	public Texture(int width, int height) {
@@ -16,10 +17,12 @@ public class Texture {
 		this.height = height;
 	}
 	
+	@Override
 	public void Bind() {
 		if(id != GL_FALSE)glBindTexture(id, GL_TEXTURE_2D);
 	}
 	
+	@Override
 	public void Unbind() {
 		glBindTexture(0, GL_TEXTURE_2D);
 	}
@@ -42,11 +45,7 @@ public class Texture {
 	public static void Disable() {
 		glDisable(GL_TEXTURE0);
 	}
-	
-	public int ID() {
-		return id;
-	}
-	
+
 	public int GetWidth() {
 		return width;
 	}

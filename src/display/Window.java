@@ -3,6 +3,7 @@ package display;
 import static org.lwjgl.glfw.GLFW.*;
 
 import org.lwjgl.glfw.Callbacks;
+import org.lwjgl.glfw.GLFWVidMode;
 
 import core.Context;
 
@@ -14,7 +15,9 @@ public class Window {
 	public Window(String title, int width, int height) {
 		glfwInit();
 		id = glfwCreateWindow(width, height, title, NULL, NULL);
-		if(id != TRUE)System.err.println("Window creation failed!");
+		if(id == NULL)System.err.println("Window creation failed!");
+		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		glfwSetWindowPos(id, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
 		context = new Context(this);
 		context.CreateContext();
 	}

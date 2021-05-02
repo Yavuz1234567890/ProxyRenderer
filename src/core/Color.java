@@ -1,11 +1,11 @@
 package core;
 
 public class Color {
-	private int r, g, b, a;
+	private float r, g, b, a;
 	
 	public Color() {}
 	
-	public Color(int r, int g, int b, int a) {
+	public Color(float r, float g, float b, float a) {
 		this.r = r;
 		this.g = g;
 		this.b = b;
@@ -19,7 +19,7 @@ public class Color {
 		this.a = color.a;
 	}
 	
-	public void Set(int r, int g, int b, int a) {
+	public void Set(float r, float g, float b, float a) {
 		this.r = r;
 		this.g = g;
 		this.b = b;
@@ -33,19 +33,19 @@ public class Color {
 		this.a = color.a;
 	}
 	
-	public int R() {
+	public float R() {
 		return r;
 	}
 	
-	public int G() {
+	public float G() {
 		return g;
 	}
 	
-	public int B() {
+	public float B() {
 		return b;
 	}
 	
-	public int A() {
+	public float A() {
 		return a;
 	}
 }

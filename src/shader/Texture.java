@@ -10,12 +10,14 @@ import core.Renderer;
 
 public class Texture extends RenderObject {
 	private int width, height;
+	private ByteBuffer data;
 	
-	public Texture(int width, int height) {
+	public Texture(ByteBuffer data, int width, int height) {
 		id = glGenTextures();
 		if(id == GL_FALSE)return;
 		this.width = width;
 		this.height = height;
+		this.data = data;
 	}
 	
 	@Override
@@ -28,7 +30,7 @@ public class Texture extends RenderObject {
 		glBindTexture(0, GL_TEXTURE_2D);
 	}
 	
-	public void Create(ByteBuffer data) {
+	public void Create() {
 		Bind();
 		if(id != GL_FALSE) {
 			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
